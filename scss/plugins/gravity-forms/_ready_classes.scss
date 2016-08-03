@@ -4,6 +4,7 @@ Author:
 
 Stylesheet: Read Class Styles for Gravity Forms
 
+Usage: Uncheck box in Gravity Forms Settings to "Not" Output default CSS
 Reference: http://www.gravityhelp.com/documentation/page/CSS_Ready_Classes,
 https://wordpress.org/plugins/gravity-forms-css-ready-selector/
 
@@ -15,28 +16,44 @@ li.gf_inline div.ginput_container {
 	white-space: nowrap !important;
 }
 
-.top_label,
-.left_label,
-.right_label {
+.right_label input.small,
+.right_label select.small,
+.left_label input.small,
+.left_label select.small {
+	width: 15%;
+}
 
-	input.small,
-	select.small,
-	.select2-container.small,
-	textarea.small,
-	input.medium,
-	select.medium,
-	.select2-container.medium,
-	textarea.medium,
-	input.large,
-	select.large,
-	.select2-container.large,
-	textarea.large {
-		width: 100%;
-	}
-	
+.right_label input.medium,
+.right_label select.medium,
+.left_label input.medium,
+.left_label select.medium {
+	width: 35%;
+}
+
+.right_label input.large,
+.right_label select.large,
+.left_label input.large,
+.left_label select.large,
+textarea.textarea {
+	width: 63%;
+}
+
+.right_label div.ginput_complex,
+.left_label div.ginput_complex {
+	width: 64%;
 }
 
 .top_label {
+
+	input.small,
+	select.small,
+	input.medium,
+	select.medium,
+	input.large,
+	select.large,
+	textarea.textarea {
+		width: 100%;
+	}
 
 	li.gfield.gf_inline {
 		vertical-align: top;
@@ -114,8 +131,10 @@ li.gf_inline div.ginput_container {
 		input.large,
 		select.medium,
 		select.large,
-		.select2-container.medium,
-		.select2-container.large {
+		input.medium,
+		input.large,
+		select.medium,
+		select.large {
 			width: 100%;
 		}
 
@@ -525,70 +544,23 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 	}
 }
 
-/************************
- * MEDIA QUERIES
- ************************/
-
 @media only screen and (min-width: $screen-sm-min) {
-	
-	.right_label input.small,
-	.right_label select.small,
-	.right_label .select2-container.small,
-	.right_label textarea.small,
-	.left_label input.small,
-	.left_label select.small,
-	.left_label .select2-container.small,
-	.left_label textarea.small {
-		width: 15%;
-	}
-
-	.right_label input.medium,
-	.right_label select.medium,
-	.right_label .select2-container.medium,
-	.right_label textarea.medium,
-	.left_label input.medium,
-	.left_label select.medium,
-	.left_label .select2-container.medium,
-	.left_label textarea.medium {
-		width: 35%;
-	}
-
-	.right_label input.large,
-	.right_label select.large,
-	.right_label .select2-container.large,
-	.right_label textarea.large,
-	.left_label input.large,
-	.left_label select.large,
-	.left_label .select2-container.large,
-	.left_label textarea.large {
-		width: 69%;
-	}
-
-	.right_label .ginput_complex,
-	.left_label .ginput_complex {
-		width: 69%;
-	}
-	
 	.top_label {
-		
 		input.large,
 		select.large,
-		.select2-container.large,
-		textarea.large {
+		textarea.textarea {
 			width: 100%;
 		}
 
 		input.small,
 		select.small,
-		.select2-container.small,
-		textarea.small {
+		.select2-container.small {
 			width: 25%;
 		}
 
 		input.medium,
 		select.medium,
-		.select2-container.medium,
-		textarea.medium {
+		.select2-container.medium {
 			width: 49%;
 		}
 
@@ -629,11 +601,10 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 			input.large,
 			select.large,
 			.select2-container.large,
-			textarea.large,
+			textarea.textarea,
 			input.medium,
 			select.medium,
-			.select2-container.medium,
-			textarea.medium {
+			.select2-container.medium {
 				width: 100% !important;
 			}
 		}
@@ -695,15 +666,6 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 	li.gfield.gf_2col ul.gfield_radio li {
 		width: 50%;
 		float: left;
-		padding-right: 1em;
-		
-		&:nth-child(2n) {
-			clear: right;
-		}
-		
-		&:nth-child(2n+1) {
-			clear: left;
-		}
 	}
 
 	li.gfield.gf_list_3col ul.gfield_checkbox li,
@@ -712,45 +674,18 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 	li.gfield.gf_3col ul.gfield_radio li {
 		width: 33%;
 		float: left;
-		padding-right: 1em;
-		
-		&:nth-child(3n) {
-			clear: right;
-		}
-		
-		&:nth-child(3n+1) {
-			clear: left;
-		}
 	}
 
 	li.gfield.gf_list_4col ul.gfield_checkbox li,
 	li.gfield.gf_list_4col ul.gfield_radio li {
 		width: 25%;
 		float: left;
-		padding-right: 1em;
-		
-		&:nth-child(4n) {
-			clear: right;
-		}
-		
-		&:nth-child(4n+1) {
-			clear: left;
-		}
 	}
 
 	li.gfield.gf_list_5col ul.gfield_checkbox li,
 	li.gfield.gf_list_5col ul.gfield_radio li {
 		width: 20%;
 		float: left;
-		padding-right: 1em;
-		
-		&:nth-child(5n) {
-			clear: right;
-		}
-		
-		&:nth-child(5n+1) {
-			clear: left;
-		}
 	}
 }
 

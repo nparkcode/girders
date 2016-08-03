@@ -20,7 +20,7 @@
  * add column count class for all product loops
  */
 
-global $product, $woocommerce_loop;
+global $woocommerce_loop;
 
 // Store column count for displaying the grid
 if ( empty( $woocommerce_loop['columns'] ) ) {

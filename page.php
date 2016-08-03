@@ -10,7 +10,13 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<div id="inner-content" class="wrap clearfix">
+
+	<div class="row">
+
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
+
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 
@@ -42,12 +48,20 @@ get_header(); ?>
 
 			</article>
 
-		<?php endwhile; ?>
+			<?php endwhile; ?>
+	
+		<?php else : ?>
 
-	<?php else : ?>
+			<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
 
-		<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
+		<?php endif; ?>
 
-	<?php endif; ?>
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();

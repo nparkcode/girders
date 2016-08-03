@@ -35,17 +35,19 @@ table {
 		vertical-align: top;
 	}
 
-	tr:nth-child(even),
-	tr.even {
-		background-color: $table__bg-even-color;
-	}
-
-	tr:nth-child(odd),
-	tr.odd {
-		background-color: $table__bg-odd-color;
-	}
-
 	tr:hover{}
+	
+	&.zebra-stripped {
+		tr:nth-child(even),
+		tr.even {
+			background-color: $table__bg-even-color;
+		}
+
+		tr:nth-child(odd),
+		tr.odd {
+			background-color: $table__bg-odd-color;
+		}
+	}
 	
 }
 

@@ -12,7 +12,13 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<div id="inner-content" class="wrap clearfix">
+
+	<div class="row">
+
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
+
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -36,12 +42,16 @@ get_header(); ?>
 					) ); ?>
 
 				</section><?php // END .entry-content ?>
+				
+				<?php if ( get_the_tag_list() ) : ?>
 
 				<footer class="article-footer">
 
-					<?php the_tags('<p class="tags"><span class="tags-title">Tags:</span> ', ', ', '</p>'); ?>
+					<?php echo get_the_tag_list( '<p class="tags"><span class="meta-title">Tags:</span> ', ', ', '</p>' );  ?>
 
 				</footer><?php // END .article-footer ?>
+				
+				<?php endif; ?>
 
 				<?php
 					// If comments are open or we have at least one comment, load up the comment template
@@ -52,12 +62,20 @@ get_header(); ?>
 
 			</article><?php // END article ?>
 
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 
-	<?php else : ?>
+		<?php else : ?>
 
-		<?php get_template_part ( 'template-parts/error' ); // WordPress template error message ?>
+			<?php get_template_part ( 'template-parts/error' ); // WordPress template error message ?>
 
-	<?php endif; ?>
+		<?php endif; ?>
+
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();

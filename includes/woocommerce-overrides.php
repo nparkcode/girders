@@ -36,21 +36,47 @@ function scaffolding_woocommerce_placeholder_img_src() {
 add_filter( 'woocommerce_placeholder_img_src', 'scaffolding_woocommerce_placeholder_img_src' );
 
 /**
+ * Remove default woo sidebar
+ */
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+/**
  * Remove wrapper div
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
-/**
- * Remove default woo sidebar
- */
-remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+function scaffolding_woocommerce_output_content_wrapper() {
+	echo '<div id="inner-content" class="wrap clearfix"><div class="row"><div id="main" class="' . scaffolding_set_layout_classes( 'main' ) . ' clearfix" role="main">';
+}
+add_action( 'woocommerce_before_main_content', 'scaffolding_woocommerce_output_content_wrapper', 10 );
+
+function scaffolding_woocommerce_output_content_wrapper_end() {
+	echo '</div>';
+}
+add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_output_content_wrapper_end', 10 );
+
+function scaffolding_woocommerce_sidebar() {
+	get_sidebar();
+}
+add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_sidebar', 15 );
+
+function scaffolding_woocommerce_output_main_wrapper_end() {
+	echo '</div></div></div>'; // close #main, .row, #inner-content
+}
+add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_output_main_wrapper_end', 20 );
 
 /**
  * Remove breadcrumbs from being called here
  * using sitewide, called in header
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+function scaffolding_woocommerce_breadcrumbs() {
+	if ( function_exists( 'woocommerce_breadcrumb' ) && ! is_front_page() ) {
+		woocommerce_breadcrumb();
+	} 
+}
+add_action( 'scaffolding_after_content_begin', 'scaffolding_woocommerce_breadcrumbs' );
 
 /**
  * Customize breadcrumb args

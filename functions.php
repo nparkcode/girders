@@ -67,6 +67,12 @@ function scaffolding_scripts_and_styles() {
 	// get global variables to add conditional wrappers around styles and scripts
 	global $wp_styles;
 	global $wp_scripts;
+	
+	// Dequeue Select2 styles added by ACF
+	wp_dequeue_style( 'select2' );
+
+	// Dequeue Select2 script added by ACF
+	wp_dequeue_script( 'select2' );
 
 	/**
 	 * Add to wp_head()
@@ -227,7 +233,7 @@ function scaffolding_theme_support() {
 // Main navigation menu
 function scaffolding_main_nav() {
 	// Display the wp3 menu if available
-	wp_nav_menu(array(
+	wp_nav_menu( array(
 		'container'       => '',						 	  // remove nav container
 		'container_class' => '',		 			          // class of container (should you choose to use it)
 		'menu'            => '',						      // nav name
@@ -241,12 +247,12 @@ function scaffolding_main_nav() {
 		'fallback_cb'     => '',	                          // fallback function
 		'items_wrap'      => '<a href="#" id="mobile-menu-button" title="Click to open menu"><i class="fa"></i> Menu</a><ul id="%1$s" class="%2$s">%3$s</ul>',
 		'walker'          => new Scaffolding_Walker_Nav_Menu,
-	));
+	) );
 } // end scaffolding_main_nav()
 
 // Footer menu (should you choose to use one)
 function scaffolding_footer_nav() {
-	wp_nav_menu(array(
+	wp_nav_menu( array(
 		'container'       => '',
 		'container_class' => '',
 		'menu'            => '',
@@ -258,7 +264,7 @@ function scaffolding_footer_nav() {
 		'link_after'      => '',
 		'depth'           => 0,
 		'fallback_cb'     => '__return_false',
-	));
+	) );
 } // end scaffolding_footer_nav()
 
 /**
@@ -352,6 +358,7 @@ class Scaffolding_Walker_Nav_Menu extends Walker_Nav_Menu {
  * Add additional image sizes
  *
  * Function called in scaffolding_build() in base-functions.php.
+ *
  * Ex. add_image_size( 'scaffolding-thumb-600', 600, 150, true );
  *
  * @since Scaffolding 1.0
@@ -439,7 +446,7 @@ function scaffolding_wpsearch( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="clearfix" action="' . home_url( '/' ) . '" >
 	<label class="screen-reader-text" for="s">' . __('Search for:', 'scaffolding') . '</label>
 	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__( 'Search the Site&hellip;', 'scaffolding' ).'" />
-	<input type="submit" id="searchsubmit" value="'. esc_attr__( 'Go', 'scaffolding' ) .'" />
+	<input type="submit" id="searchsubmit" value="'. esc_attr__('Go') .'" />
 	</form>';
 	return $form;
 } // end scaffolding_wpsearch()
@@ -520,7 +527,7 @@ function scaffolding_comments( $comment, $args, $depth ) {
  */
 function scaffolding_excerpt_more( $more ) {
 	global $post;
-	return '&hellip; <a class="read-more" href="'. get_permalink( $post->ID ) . '" title="'. __('Read ', 'scaffolding') . get_the_title( $post->ID ).'">'. __('Read more &raquo;', 'scaffolding') .'</a>';
+	return '&hellip;  <a class="read-more" href="' . get_permalink( $post->ID ) . '" title="'. __('Read', 'scaffolding') . ' ' . get_the_title( $post->ID ) . '">'. __('Read more &raquo;', 'scaffolding') . '</a>';
 } // end scaffolding_excerpt_more()
 
 /**
@@ -543,6 +550,48 @@ function scaffolding_get_the_author_posts_link() {
 		get_the_author()
 	);
 	return $link;
+}
+
+/**
+ * Set grid classes based on sidebars
+ *
+ * @since Scaffolding 2.0
+ */
+function scaffolding_set_layout_classes( $type ) {
+	
+	if ( '' == $type || ( 'main' != $type && 'sidebar' != $type ) ) {
+		return;
+	}
+	
+	if ( 'main' == $type ) {
+		
+		$class = '';
+		
+		if ( is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { // both sidebars
+			$class = 'col-sm-6 col-sm-push-3';
+		} elseif ( is_active_sidebar( 'left-sidebar' ) && ! is_active_sidebar( 'right-sidebar' ) ) { // left sidebar
+			$class = 'col-sm-9 col-sm-push-3';
+		} elseif ( ! is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { // right sidebar
+			$class = 'col-sm-9';
+		} else { // no sidebar
+			$class = 'col-xs-12';
+		}
+		
+	} elseif ( 'sidebar' == $type ) {
+		
+		$class = array();
+		
+		if ( is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { //both sidebars
+			$class['left'] = 'col-sm-3 col-sm-pull-6';
+			$class['right'] = 'col-sm-3';
+		} elseif ( is_active_sidebar( 'left-sidebar' ) && ! is_active_sidebar( 'right-sidebar' ) ) { //left sidebar
+			$class['left'] = 'col-sm-3 col-sm-pull-9';
+		} elseif ( ! is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { //right sidebar
+			$class['right'] = 'col-sm-3';
+		}
+	}
+	
+	return $class;
 }
 
 

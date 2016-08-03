@@ -12,7 +12,13 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<div id="inner-content" class="wrap clearfix">
+
+	<div class="row">
+
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
+
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
@@ -26,28 +32,38 @@ get_header(); ?>
 
 				<section class="entry-content clearfix">
 
-					<?php the_content('Read More...'); ?>
+					<?php the_content('<span class="read-more">Read More&hellip;</span>'); ?>
 
 				</section>
+				
+				<?php if ( get_the_tag_list() ) : ?>
 
 				<footer class="article-footer">
 
-					<?php if ( get_the_tag_list() ) :
-						echo get_the_tag_list( '<p class="tags"><span class="meta-title">Tags:</span> ', ', ', '</p>' );
-					endif; ?>
+					<?php echo get_the_tag_list( '<p class="tags"><span class="meta-title">Tags:</span> ', ', ', '</p>' );  ?>
 
 				</footer>
+				
+				<?php endif; ?>
 
 			</article>
 
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 
-		<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
+			<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
 
-	<?php else : ?>
+		<?php else : ?>
 
-		<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
+			<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
 
-	<?php endif; ?>
+		<?php endif; ?>
+
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();

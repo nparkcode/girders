@@ -10,49 +10,58 @@
 
 get_header(); ?>
 
-	<div itemscope itemtype="http://schema.org/SearchResultsPage">
+<div id="inner-content" class="wrap clearfix">
 
-		<h1 class="archive-title"><span>Search Results for:</span> <?php echo esc_attr( get_search_query() ); ?></h1>
+	<div class="row">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
+			<div itemscope itemtype="http://schema.org/SearchResultsPage">
 
-					<header class="article-header">
+				<h1 class="archive-title"><span>Search Results for:</span> <?php echo esc_attr( get_search_query() ); ?></h1>
 
-						<h2 class="entry-title search-title h3"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-						<?php if ( "post" == get_post_type() ) : ?>
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
-							<p class="byline"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
+						<header class="article-header">
 
-						<?php endif; ?>
+							<h2 class="entry-title search-title h3"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-					</header><?php // END .article-header ?>
+							<?php if ( "post" == get_post_type() ) : ?>
 
-					<section class="entry-content" itemprop="description">
+								<p class="byline"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
 
-						<?php the_excerpt('<span class="read-more">Read more &raquo;</span>'); ?>
+							<?php endif; ?>
 
-					</section><?php // END .article-section ?>
+						</header><?php // END .article-header ?>
 
-					<?php /* Hidden By Default - no content
-					<footer class="article-footer">
-					</footer><?php // END .article-footer ?>
-					*/ ?>
+						<div class="entry-content" itemprop="description">
 
-				</article><?php // END article ?>
+							<?php the_excerpt('<span class="read-more">Read more &raquo;</span>'); ?>
 
-			<?php endwhile; ?>
+						</div><?php // END .article-section ?>
 
-			<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
+					</article><?php // END article ?>
 
-		<?php else : ?>
+					<?php endwhile; ?>
 
-			<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
+					<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
 
-		<?php endif; ?>
+				<?php else : ?>
 
-	</div>
+					<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
+
+				<?php endif; ?>
+
+			</div>
+
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();

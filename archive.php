@@ -12,118 +12,124 @@
 
 get_header(); ?>
 
-	<?php if ( have_posts() ) : ?>
+<div id="inner-content" class="wrap clearfix">
 
-		<header class="page-header">
+	<div class="row">
 
-			<h1 class="archive-title">
-				<?php
-				if ( is_category() ) :
-					$current_category = single_cat_title( '', false );
-					printf( __( 'Category: %s', 'scaffolding' ), $current_category );
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
 
-				elseif ( is_tag() ) :
-					$current_tag = single_tag_title( '', false );
-					printf( __( 'Tag: %s', 'scaffolding' ), $current_tag );
+		<?php if ( have_posts() ) : ?>
 
-				elseif ( is_author() ) :
-					printf( __( 'Author Archive: %s', 'scaffolding' ), '<span class="vcard">' . get_the_author() . '</span>' );
+			<header class="page-header">
 
-				elseif ( is_day() ) :
-					printf( __( 'Daily Archives: %s', 'scaffolding' ), '<span>' . get_the_date() . '</span>' );
+				<h1 class="archive-title">
+					<?php
+					if ( is_category() ) :
+						$current_category = single_cat_title( '', false );
+						printf( __( 'Category: %s', 'scaffolding' ), $current_category );
 
-				elseif ( is_month() ) :
-					printf( __( 'Monthly Archives: %s', 'scaffolding' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'scaffolding' ) ) . '</span>' );
+					elseif ( is_tag() ) :
+						$current_tag = single_tag_title( '', false );
+						printf( __( 'Tag: %s', 'scaffolding' ), $current_tag );
 
-				elseif ( is_year() ) :
-					printf( __( 'Yearly Archives: %s', 'scaffolding' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'scaffolding' ) ) . '</span>' );
+					elseif ( is_author() ) :
+						printf( __( 'Author Archive: %s', 'scaffolding' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
-				/* Currently commented out, uncomment if post formats are supported
-				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-					_e( 'Asides', 'scaffolding' );
+					elseif ( is_day() ) :
+						printf( __( 'Daily Archives: %s', 'scaffolding' ), '<span>' . get_the_date() . '</span>' );
 
-				elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-					_e( 'Galleries', 'scaffolding' );
+					elseif ( is_month() ) :
+						printf( __( 'Monthly Archives: %s', 'scaffolding' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'scaffolding' ) ) . '</span>' );
 
-				elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-					_e( 'Images', 'scaffolding' );
+					elseif ( is_year() ) :
+						printf( __( 'Yearly Archives: %s', 'scaffolding' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'scaffolding' ) ) . '</span>' );
 
-				elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-					_e( 'Videos', 'scaffolding' );
+					/* Currently commented out, uncomment if post formats are supported
+					elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
+						_e( 'Asides', 'scaffolding' );
 
-				elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-					_e( 'Quotes', 'scaffolding' );
+					elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
+						_e( 'Galleries', 'scaffolding' );
 
-				elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-					_e( 'Links', 'scaffolding' );
+					elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
+						_e( 'Images', 'scaffolding' );
 
-				elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-					_e( 'Statuses', 'scaffolding' );
+					elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
+						_e( 'Videos', 'scaffolding' );
 
-				elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-					_e( 'Audios', 'scaffolding' );
+					elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
+						_e( 'Quotes', 'scaffolding' );
 
-				elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-					_e( 'Chats', 'scaffolding' );
-				*/
+					elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
+						_e( 'Links', 'scaffolding' );
 
-				elseif ( is_tax() ) :
-					$current_taxonomy = single_term_title( '', false );
-					printf( __( 'Term: %s', 'scaffolding' ), $current_taxonomy );
+					elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
+						_e( 'Statuses', 'scaffolding' );
 
-				else :
-					_e( 'Archives', 'scaffolding' );
+					elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
+						_e( 'Audios', 'scaffolding' );
 
-				endif;
-				?>
-			</h1>
+					elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
+						_e( 'Chats', 'scaffolding' );
+					*/
 
-		<?php
-			// Show an optional term description.
-			$term_description = term_description();
-			if ( ! empty( $term_description ) ) {
-				printf( '<div class="taxonomy-description">%s</div>', $term_description );
-			}
-		?>
+					elseif ( is_tax() ) :
+						$current_taxonomy = single_term_title( '', false );
+						printf( __( 'Term: %s', 'scaffolding' ), $current_taxonomy );
 
-		</header><?php // END .page-header ?>
+					else :
+						_e( 'Archives', 'scaffolding' );
 
-		<?php while ( have_posts() ) : the_post(); ?>
+					endif;
+					?>
+				</h1>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
+			<?php
+				// Show an optional term description.
+				$term_description = term_description();
+				if ( ! empty( $term_description ) ) {
+					printf( '<div class="taxonomy-description">%s</div>', $term_description );
+				}
+			?>
 
-				<header class="article-header">
+			</header><?php // END .page-header ?>
 
-					<h3 class="entry-title h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+			<?php while ( have_posts() ) : the_post(); ?>
 
+				<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
-					<p class="byline"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
+					<header class="article-header">
 
-				</header><?php // END .article-header ?>
+						<h3 class="entry-title h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-				<section class="entry-content clearfix">
+						<p class="byline"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
 
-					<?php //the_post_thumbnail(); ?>
+					</header><?php // END .article-header ?>
 
-					<?php the_excerpt(); ?>
+					<div class="entry-content clearfix">
 
-				</section><?php // END .entry-content ?>
+						<?php the_excerpt(); ?>
 
-				<?php /* Hidden By Default - no content
-				<footer class="article-footer">
-				</footer><?php // END .article-footer ?>
-				*/ ?>
+					</div><?php // END .entry-content ?>
 
-			</article><?php // END post article ?>
+				</article><?php // END post article ?>
 
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 
-		<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
+			<?php get_template_part( 'template-parts/pager' ); // WordPress template pager/pagination ?>
 
-	<?php else : ?>
+		<?php else : ?>
 
-		<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
+			<?php get_template_part( 'template-parts/error' ); // WordPress template error message ?>
 
-	<?php endif; ?>
+		<?php endif; ?>
+			
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();

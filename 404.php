@@ -8,26 +8,36 @@
 
 get_header(); ?>
 
-	<section class="error-404 not-found clearfix">
+<div id="inner-content" class="wrap clearfix">
 
-		<header class="page-header">
+	<div class="row">
 
-			<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'scaffolding' ); ?></h1>
+		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
 
-		</header>
+			<section class="error-404 not-found clearfix">
 
-		<div class="page-content">
+				<header class="page-header">
+
+					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'scaffolding' ); ?></h1>
+
+				</header>
+
+				<div class="page-content">
+
+					<?php _e( '<p>It looks like nothing was found at this location. This may be due to the page being moved, renamed or deleted.</p><ul><li>Check the URL in the address bar above;</li><li>Look for the page in the main navigation above or on the <a href="/site-map/" title="Site Map Page">Site Map</a> page;</li><li>Or try using the Search below.</li></ul>' ); ?>
+
+					<?php get_search_form(); ?>
+
+				</div>
+
+			</section>
 			
-			<p><?php _e( 'It looks like nothing was found at this location. This may be due to the page being moved, renamed or deleted.', 'scaffolding' ); ?></p>
-
-			<ul>
-				<?php _e( '<li>Check the URL in the address bar above;</li><li>Look for the page in the main navigation above or on the <a href="/site-map/" title="Site Map Page">Site Map</a> page;</li><li>Or try using the Search below.</li>', 'scaffolding' ); ?>
-			</ul>
-
-			<?php get_search_form(); ?>
-
-		</div>
-
-	</section>
+		</div><?php // END #main ?>
+		
+		<?php get_sidebar(); ?>
+		
+	</div><?php // END .row ?>
+	
+</div><?php // END #inner-content ?>
 
 <?php get_footer();
