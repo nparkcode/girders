@@ -26,6 +26,7 @@
  * 9.0 - Utility Functions
  *    9.1 - Removes […] from read more
  *    9.2 - Modified author post link
+ *	  9.3 - Add layout classes
  * 10.0 - Admin Customization
  *    10.1 - Set content width
  *    10.2 - Set image attachment width
@@ -134,7 +135,7 @@ function scaffolding_scripts_and_styles() {
 function scaffolding_theme_support() {
 
 	// Make theme available for translation
-	load_theme_textdomain( 'scaffolding', get_template_directory() . '/languages' );
+	//load_theme_textdomain( 'scaffolding', get_template_directory() . '/languages' );
 
 	// Support for thumbnails
 	add_theme_support( 'post-thumbnails' );
@@ -446,7 +447,7 @@ function scaffolding_wpsearch( $form ) {
 	$form = '<form role="search" method="get" id="searchform" class="clearfix" action="' . home_url( '/' ) . '" >
 	<label class="screen-reader-text" for="s">' . __('Search for:', 'scaffolding') . '</label>
 	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__( 'Search the Site&hellip;', 'scaffolding' ).'" />
-	<input type="submit" id="searchsubmit" value="'. esc_attr__('Go') .'" />
+	<input type="submit" id="searchsubmit" value="'. esc_attr__( 'Go', 'scaffolding' ) .'" />
 	</form>';
 	return $form;
 } // end scaffolding_wpsearch()
@@ -456,7 +457,7 @@ function scaffolding_wpsearch( $form ) {
  *
  * This function is dependent on Yoast SEO Plugin.
  *
- * @since Scaffolding 1.1
+ * @since Scaffolding 2.0
  */
 function scaffolding_noindex_filter( $query ) {
 	if ( ! is_admin() && $query->is_search() && defined( 'WPSEO_VERSION' ) ) {
@@ -517,6 +518,7 @@ function scaffolding_comments( $comment, $args, $depth ) {
  * 9.0 - UTILITY FUNCTIONS
  *     9.1 - Removes […] from read more
  *     9.2 - Modified author post link
+ *	   9.3 - Add layout classes
  ************************************/
 
 /**
@@ -555,7 +557,7 @@ function scaffolding_get_the_author_posts_link() {
 /**
  * Set grid classes based on sidebars
  *
- * @since Scaffolding 2.0
+ * @since Scaffolding 2.1
  */
 function scaffolding_set_layout_classes( $type ) {
 	

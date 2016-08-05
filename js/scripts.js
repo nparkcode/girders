@@ -63,10 +63,13 @@ jQuery(document).ready(function($) {
 	if ($.fn.select2) {
 		var setup_select2 = function() {
 			$('select').each(function(){
-				$(this).select2();
+				$(this).select2({
+					minimumResultsForSearch: 20,
+				});
 			})
 		};
 		$(document).ajaxComplete(setup_select2);
+		$(document).bind('gform_post_render', setup_select2);
 		setup_select2();
 	}
 
@@ -112,9 +115,9 @@ jQuery(document).ready(function($) {
 		.removeAttr('width');
 	});
 	$(window).resize(function() {
-		var newWidth = $fluidEl.width();
 		$allVideos.each(function() {
 			var $el = $(this);
+			var newWidth = $el.closest("figure").width();
 			$el
 			.width(newWidth)
 			.height(newWidth * $el.attr('data-aspectRatio'));

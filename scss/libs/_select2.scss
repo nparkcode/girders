@@ -26,6 +26,10 @@ Select2 gives you a customizable select box with support for searching, tagging,
 	@include transition(all 0.25s ease-in-out);
 }
 
+.select2-container.small {
+	font-size: 90%;
+}
+
 .select2-container,
 .select2-drop,
 .select2-search,
@@ -48,15 +52,16 @@ Select2 gives you a customizable select box with support for searching, tagging,
 	border: 1px solid $input__border-color;
 	white-space: nowrap;
 	line-height: $input__height;
-	color: #444;
+	color: $color__body-text;
+	text-align: left;
 	text-decoration: none;
+	background-color: $input__bg-color;
 	background-clip: padding-box;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
-	background-color: $input__bg-color;
 }
 
 html[dir="rtl"] .select2-container .select2-choice {
@@ -137,7 +142,7 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
 	z-index: 9999;
 	top: 100%;
 	background: #fff;
-	color: #000;
+	color: $color__body-text;
 	border: 1px solid $input__border-color;
 	border-top: 0;
 }
@@ -214,7 +219,6 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
 	padding: 4px 20px 4px 5px;
 	margin: 0;
 	outline: 0;
-	font-family: sans-serif;
 	font-size: 1em;
 	border: 1px solid $input__border-color;
 	background: #fff url('../libs/images/select2.png') no-repeat 100% -22px;
@@ -501,7 +505,7 @@ html[dir="rtl"] .select2-container-multi .select2-choices li {
 	margin: 1px 0;
 	font-family: sans-serif;
 	font-size: 100%;
-	color: #666;
+	color: $color__body-text;
 	outline: 0;
 	border: 0;
 	background: transparent !important;
@@ -524,13 +528,13 @@ html[dir="rtl"] .select2-container-multi .select2-choices li {
 	color: #333;
 	cursor: default;
 	border: 1px solid $input__border-color;
+	background-color: $input__bg-focus-color;
 	background-clip: padding-box;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
-	background-color: $input__bg-focus-color;
 }
 
 html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice {
@@ -577,7 +581,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 .select2-container-multi .select2-choices .select2-search-choice-focus .select2-search-choice-close {
-		background-position: right -11px;
+	background-position: right -11px;
 }
 
 /* disabled styles */
@@ -585,13 +589,13 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 .select2-container-multi.select2-container-disabled .select2-choices {
 	background-color: #f4f4f4;
 	background-image: none;
-	border: 1px solid #ddd;
+	border: 1px solid #DDD;
 	cursor: default;
 }
 
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice {
 	padding: 3px 5px 3px 5px;
-	border: 1px solid #ddd;
+	border: 1px solid #DDD;
 	background-image: none;
 	background-color: #f4f4f4;
 }

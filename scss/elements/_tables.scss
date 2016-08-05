@@ -37,7 +37,7 @@ table {
 
 	tr:hover{}
 	
-	&.zebra-stripped {
+	&.zebra-striped {
 		tr:nth-child(even),
 		tr.even {
 			background-color: $table__bg-even-color;
