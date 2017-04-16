@@ -13,7 +13,7 @@
  * TinyMCE: First line toolbar customizations
  * There are 4 total lines that may be added
  */
-function scaffolding_tinymce_modify_mce_buttons_1 ( $buttons ) {
+function girders_tinymce_modify_mce_buttons_1 ( $buttons ) {
 	// The settings are returned in this array. Customize to suite your needs.
 	return array(
 		'bold', 'italic', 'strikethrough', 'bullist', 'numlist', 'blockquote', 'hr',
@@ -27,13 +27,13 @@ function scaffolding_tinymce_modify_mce_buttons_1 ( $buttons ) {
 		'spellchecker', 'wp_fullscreen', 'wp_adv'
 	); */
 }
-add_filter( 'mce_buttons', 'scaffolding_tinymce_modify_mce_buttons_1', 0 );
+add_filter( 'mce_buttons', 'girders_tinymce_modify_mce_buttons_1', 0 );
 
 /**
  * TinyMCE: Second line toolbar customizations
  * There are 4 total lines that may be added
  */
-function scaffolding_tinymce_modify_mce_buttons_2 ( $buttons ) {
+function girders_tinymce_modify_mce_buttons_2 ( $buttons ) {
 	// The settings are returned in this array. Customize to suite your needs.
 	return array(
 		'styleselect', 'underline', 'alignull', 'forecolor', 'pastetext', 'pasteword', 'removeformat', 'media', 'charmap',
@@ -45,13 +45,13 @@ function scaffolding_tinymce_modify_mce_buttons_2 ( $buttons ) {
 		'outdent', 'indent', 'undo', 'redo', 'wp_help'
 	); */
 }
-add_filter( 'mce_buttons_2', 'scaffolding_tinymce_modify_mce_buttons_2', 0 );
+add_filter( 'mce_buttons_2', 'girders_tinymce_modify_mce_buttons_2', 0 );
 
 /**
  * TinyMCE: Modify 'styleselect'
  * This is the Formats dropdown
  */
-function scaffolding_tinymce_modify_styleselect( $settings ) {
+function girders_tinymce_modify_styleselect( $settings ) {
 	
 	// Modify default styles
     $default_styles = array(
@@ -182,10 +182,10 @@ function scaffolding_tinymce_modify_styleselect( $settings ) {
 	$new_styles = array(
 		/*
 		array(
-			'title'	=> __( 'Buttons', 'scaffolding' ), // This is the title of the dropdown
+			'title'	=> __( 'Buttons', 'girders' ), // This is the title of the dropdown
 			'items'	=> array(
 				array(
-					'title'    => __( 'Orange Button', 'scaffolding' ),
+					'title'    => __( 'Orange Button', 'girders' ),
 					'selector' => 'a',
 					'classes'  => 'orange-btn',
 					'exact'    => true
@@ -205,13 +205,13 @@ function scaffolding_tinymce_modify_styleselect( $settings ) {
 	return $settings;
 
 }
-add_filter( 'tiny_mce_before_init', 'scaffolding_tinymce_modify_styleselect' );
+add_filter( 'tiny_mce_before_init', 'girders_tinymce_modify_styleselect' );
 
 /**
  * TinyMCE: Modify text colors
  * Update this to include the theme's color palette and remove the defaults
  */
-function scaffolding_tinymce_modify_text_colors( $init ) {
+function girders_tinymce_modify_text_colors( $init ) {
 	$default_colors = '
 		"000000", "Black",
 		"993300", "Burnt orange",

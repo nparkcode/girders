@@ -4,8 +4,8 @@
  *
  * @see http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  *
  */ ?><!DOCTYPE html>
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -33,7 +33,7 @@
 
 	<div id="container">
 		
-		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'scaffolding' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'girders' ); ?></a>
 
 		<header id="masthead" class="header" role="banner">
 
@@ -52,14 +52,14 @@
 					*/
 				?>
 				
-				<button id="mobile-menu-button"><?php esc_html_e( 'Menu', 'scaffolding' ); ?></button>
+				<button id="mobile-menu-button"><?php esc_html_e( 'Menu', 'girders' ); ?></button>
 
 			</div>
 
 		</header>
 
-		<nav id="main-navigation" class="clearfix" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'scaffolding' ); ?>">
-			<?php scaffolding_main_nav(); ?>
+		<nav id="main-navigation" class="clearfix" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'girders' ); ?>">
+			<?php girders_main_nav(); ?>
 		</nav>
 
 		<?php // Interior Header Image ?>
@@ -73,18 +73,4 @@
 
 			<div id="inner-content" class="wrap clearfix">
 
-				<?php // Test for active sidebars to set the main content width
-					if ( is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { // both sidebars
-						$main_class = 'col-sm-6 col-sm-push-3';
-					} elseif ( is_active_sidebar( 'left-sidebar' ) && ! is_active_sidebar( 'right-sidebar' ) ) { // left sidebar
-						$main_class = 'col-sm-9 col-sm-push-3';
-					} elseif ( ! is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) { // right sidebar
-						$main_class = 'col-sm-9';
-					} else { // no sidebar
-						$main_class = 'col-xs-12';
-					}
-				?>
-
-				<div class="row">
-
-					<div id="main" class="<?php echo $main_class; ?> clearfix" role="main">
+					<div id="main" class="clearfix" role="main">

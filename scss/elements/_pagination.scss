@@ -9,7 +9,7 @@ Stylesheet: Pagination Stylesheet
 .page-navigation,
 .wp-prev-next {}
 
-.scaffolding-page-navi {
+.girders-page-navi {
 	list-style: none;
 	text-align: center;
 	margin: 2em -2px 1em;
@@ -110,7 +110,7 @@ Stylesheet: Pagination Stylesheet
 
 @media only screen and (min-width: 481px) {
 	
-	.scaffolding-page-navi {
+	.girders-page-navi {
 		
         li {
 			width: auto;

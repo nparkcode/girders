@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Scaffolding is designed to make the life of developers easier. It is built using HTML5 & has a strong semantic foundation. It is developed with the goal of providing a starting point for every responsive WordPress theme that we build.
+Girders is designed to make the life of developers easier. It is built using HTML5 & has a strong semantic foundation. It is developed with the goal of providing a starting point for every responsive WordPress theme that we build.
 
 == Installation ==
 

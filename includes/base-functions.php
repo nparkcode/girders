@@ -1,19 +1,19 @@
 <?php
 /**
- * Scaffolding Stock Functions
+ * Girders Stock Functions
  *
  * Included stock functions. Custom functions go in functions.php to facilitate future updates if necessary.
  *
- * @link https://github.com/hallme/scaffolding
- * @link http://scaffolding.io
+ * @link https://github.com/hallme/girders
+ * @link http://girders.io
  * @link https://codex.wordpress.org/Theme_Development
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  *
  * Table of Contents
  *
- * 1.0 - Initiating Scaffolding
+ * 1.0 - Initiating Girders
  * 2.0 - Cleaning Up wp_head
  * 3.0 - Front-End Improvements
  *    3.1 - Add classes to menus
@@ -40,25 +40,25 @@
  ************************************/
 
 /**
- * Scaffolding Setup
+ * Girders Setup
  *
  * All of these functions are defined below or in functions.php.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_build() {
-	add_action( 'init', 'scaffolding_head_cleanup' );                                 // launching operation cleanup
-	add_filter( 'the_generator', 'scaffolding_rss_version' );                         // remove WP version from RSS
-	add_filter( 'wp_head', 'scaffolding_remove_wp_widget_recent_comments_style', 1 ); // remove pesky injected css for recent comments widget
-	add_action( 'wp_head', 'scaffolding_remove_recent_comments_style', 1 );           // clean up comment styles in the head
-	add_action( 'wp_enqueue_scripts', 'scaffolding_scripts_and_styles', 999 );	      // enqueue base scripts and styles
-	scaffolding_add_image_sizes();                                                    // add additional image sizes
-	scaffolding_theme_support();                                                      // launching this stuff after theme setup
-	add_action( 'widgets_init', 'scaffolding_register_sidebars' );                    // adding sidebars to Wordpress (these are created in functions.php)
-	add_filter( 'the_content', 'scaffolding_filter_ptags_on_images' );                // cleaning up random code around images
-	add_filter( 'excerpt_more', 'scaffolding_excerpt_more' );                         // cleaning up excerpt
+function girders_build() {
+	add_action( 'init', 'girders_head_cleanup' );                                 // launching operation cleanup
+	add_filter( 'the_generator', 'girders_rss_version' );                         // remove WP version from RSS
+	add_filter( 'wp_head', 'girders_remove_wp_widget_recent_comments_style', 1 ); // remove pesky injected css for recent comments widget
+	add_action( 'wp_head', 'girders_remove_recent_comments_style', 1 );           // clean up comment styles in the head
+	add_action( 'wp_enqueue_scripts', 'girders_scripts_and_styles', 999 );	      // enqueue base scripts and styles
+	girders_add_image_sizes();                                                    // add additional image sizes
+	girders_theme_support();                                                      // launching this stuff after theme setup
+	add_action( 'widgets_init', 'girders_register_sidebars' );                    // adding sidebars to Wordpress (these are created in functions.php)
+	add_filter( 'the_content', 'girders_filter_ptags_on_images' );                // cleaning up random code around images
+	add_filter( 'excerpt_more', 'girders_excerpt_more' );                         // cleaning up excerpt
 }
-add_action( 'after_setup_theme', 'scaffolding_build', 16 );
+add_action( 'after_setup_theme', 'girders_build', 16 );
 
 
 /************************************
@@ -68,11 +68,11 @@ add_action( 'after_setup_theme', 'scaffolding_build', 16 );
 /**
  * Clean up wp_head() output
  *
- * This function is called in scaffolding_build().
+ * This function is called in girders_build().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_head_cleanup() {
+function girders_head_cleanup() {
 	//remove_action( 'wp_head', 'feed_links_extra', 3 );                         // category feeds
 	//remove_action( 'wp_head', 'feed_links', 2 );                               // post and comment feeds
 	remove_action( 'wp_head', 'rsd_link' );                                      // EditURI link
@@ -84,22 +84,22 @@ function scaffolding_head_cleanup() {
 /**
  * Remove WP version from RSS
  *
- * This function is called in scaffolding_build().
+ * This function is called in girders_build().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_rss_version() {
+function girders_rss_version() {
 	return '';
 }
 
 /**
  * Remove injected CSS for recent comments widget
  *
- * This function is called in scaffolding_build().
+ * This function is called in girders_build().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_remove_wp_widget_recent_comments_style() {
+function girders_remove_wp_widget_recent_comments_style() {
 	if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
 		remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
 	}
@@ -108,11 +108,11 @@ function scaffolding_remove_wp_widget_recent_comments_style() {
 /**
  * Remove injected CSS from recent comments widget
  *
- * This function is called in scaffolding_build().
+ * This function is called in girders_build().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_remove_recent_comments_style() {
+function girders_remove_recent_comments_style() {
 	global $wp_widget_factory;
 	if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
 		remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
@@ -136,9 +136,9 @@ function scaffolding_remove_recent_comments_style() {
  *
  * This now works with nested uls.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_first_last_menu_classes( $objects, $args ) {
+function girders_first_last_menu_classes( $objects, $args ) {
 
 	// Add first/last classes to nested menu items.
 	$ids        = array();
@@ -186,16 +186,16 @@ function scaffolding_first_last_menu_classes( $objects, $args ) {
 		return $objects;
 	}
 }
-add_filter( 'wp_nav_menu_objects', 'scaffolding_first_last_menu_classes', 10, 2 );
+add_filter( 'wp_nav_menu_objects', 'girders_first_last_menu_classes', 10, 2 );
 
 /**
  * Add classes on widgets
  *
  * Add first and last classes to dynamic sidebar widgets. Also adds numeric index class for each widget (widget-1, widget-2, etc.)
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_widget_classes( $params ) {
+function girders_widget_classes( $params ) {
 
 	global $my_widget_num; // Global a counter array
 	$this_id = $params[0]['id']; // Get the id for the current sidebar we're processing
@@ -229,16 +229,16 @@ function scaffolding_widget_classes( $params ) {
 
 	return $params;
 }
-add_filter( 'dynamic_sidebar_params', 'scaffolding_widget_classes' );
+add_filter( 'dynamic_sidebar_params', 'girders_widget_classes' );
 
 /**
  * Add first and last classes to posts
  *
  * Useful on archive and search pages.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_post_classes( $classes ) {
+function girders_post_classes( $classes ) {
 	global $wp_query;
 	if ( 0 == $wp_query->current_post && 1 == $wp_query->post_count ) {
 		$classes[] = 'only-post';
@@ -250,49 +250,49 @@ function scaffolding_post_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'post_class', 'scaffolding_post_classes' );
+add_filter( 'post_class', 'girders_post_classes' );
 
 /**
  * Add rel and title attribute to next pagination link
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_get_next_posts_link_attributes( $attr ) {
+function girders_get_next_posts_link_attributes( $attr ) {
 	$attr = 'rel="next" title="View the Next Page"';
 	return $attr;
 }
-add_filter( 'next_posts_link_attributes', 'scaffolding_get_next_posts_link_attributes' );
+add_filter( 'next_posts_link_attributes', 'girders_get_next_posts_link_attributes' );
 
 /**
  * Add rel and title attribute to prev pagination link
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_get_previous_posts_link_attributes( $attr ) {
+function girders_get_previous_posts_link_attributes( $attr ) {
 	$attr = 'rel="prev" title="View the Previous Page"';
 	return $attr;
 }
-add_filter( 'previous_posts_link_attributes', 'scaffolding_get_previous_posts_link_attributes' );
+add_filter( 'previous_posts_link_attributes', 'girders_get_previous_posts_link_attributes' );
 
 /**
  * Add page title attribute to wp_list_pages link tags
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_wp_list_pages_filter( $output ) {
+function girders_wp_list_pages_filter( $output ) {
 	$output = preg_replace( '/<a(.*)href="([^"]*)"(.*)>(.*)<\/a>/', '<a$1 title="$4" href="$2"$3>$4</a>', $output );
 	return $output;
 }
-add_filter( 'wp_list_pages', 'scaffolding_wp_list_pages_filter' );
+add_filter( 'wp_list_pages', 'girders_wp_list_pages_filter' );
 
 /**
  * Return the search results page even if the query is empty
  *
  * @link http://vinayp.com.np/how-to-show-blank-search-on-wordpress
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_make_blank_search( $query ) {
+function girders_make_blank_search( $query ) {
 	if ( ! is_admin() ) {
 		global $wp_query;
 		if ( isset( $_GET['s'] ) && '' == $_GET['s'] ) {  // if search parameter is blank, do not return false
@@ -302,7 +302,7 @@ function scaffolding_make_blank_search( $query ) {
 		return $query;
 	}
 }
-add_action( 'pre_get_posts', 'scaffolding_make_blank_search' );
+add_action( 'pre_get_posts', 'girders_make_blank_search' );
 
 
 /************************************
@@ -312,11 +312,11 @@ add_action( 'pre_get_posts', 'scaffolding_make_blank_search' );
 /**
  * Numeric Page Navi
  *
- * This is built into the theme by default. Call it using scaffolding_page_navi().
+ * This is built into the theme by default. Call it using girders_page_navi().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_page_navi( $before = '', $after = '', $query ) {
+function girders_page_navi( $before = '', $after = '', $query ) {
 	$request        = $query->request;
 	$posts_per_page = intval( get_query_var( 'posts_per_page' ) );
 	$paged          = intval( get_query_var( 'paged' ) );
@@ -356,10 +356,10 @@ function scaffolding_page_navi( $before = '', $after = '', $query ) {
 		$start_page = 1;
 	}
 
-	echo $before . '<nav class="page-navigation clearfix"><ol class="scaffolding-page-navi clearfix">' . "";
+	echo $before . '<nav class="page-navigation clearfix"><ol class="girders-page-navi clearfix">' . "";
 
 	if ( $start_page > 1 && $pages_to_show < $max_page ) {
-		$first_page_text = __( "First", 'scaffolding' );
+		$first_page_text = __( "First", 'girders' );
 		echo '<li class="sc-first-link"><a rel="prev" href="' . get_pagenum_link() . '" title="' . $first_page_text . '">' . $first_page_text . '</a></li>';
 	}
 
@@ -388,13 +388,13 @@ function scaffolding_page_navi( $before = '', $after = '', $query ) {
 	}
 
 	if ( $end_page < $max_page ) {
-		$last_page_text = __( 'Last', 'scaffolding' );
+		$last_page_text = __( 'Last', 'girders' );
 		echo '<li class="sc-last-link"><a rel="next" href="' . get_pagenum_link( $max_page ) . '" title="' . $last_page_text . '">' . $last_page_text . '</a></li>';
 	}
 
 	echo '</ol></nav>' . $after . "";
 
-} // end scaffolding_page_navi()
+} // end girders_page_navi()
 
 
 /************************************
@@ -407,32 +407,32 @@ function scaffolding_page_navi( $before = '', $after = '', $query ) {
 /**
  * Custom login page CSS
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_login_css() {
+function girders_login_css() {
 	echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/css/login.css">';
 }
-add_action( 'login_head', 'scaffolding_login_css' );
+add_action( 'login_head', 'girders_login_css' );
 
 /**
  * Change logo link from wordpress.org to your site
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_login_url() {
+function girders_login_url() {
 	return home_url();
 }
-add_filter( 'login_headerurl', 'scaffolding_login_url' );
+add_filter( 'login_headerurl', 'girders_login_url' );
 
 /**
  * Change alt text on logo to show your site name
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_login_title() {
+function girders_login_title() {
 	return get_option( 'blogname' );
 }
-add_filter( 'login_headertitle', 'scaffolding_login_title' );
+add_filter( 'login_headertitle', 'girders_login_title' );
 
 
 /************************************
@@ -447,9 +447,9 @@ add_filter( 'login_headertitle', 'scaffolding_login_title' );
  *
  * @link https://gist.github.com/4557917
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_remove_img_dimensions( $html ) {
+function girders_remove_img_dimensions( $html ) {
 	// Loop through all <img> tags
 	if ( preg_match( '/<img[^>]+>/ims', $html, $matches ) ) {
 		foreach ( $matches as $match ) {
@@ -461,30 +461,30 @@ function scaffolding_remove_img_dimensions( $html ) {
 	}
 	return $html;
 }
-add_filter( 'post_thumbnail_html', 'scaffolding_remove_img_dimensions', 10 );
-add_filter( 'get_avatar','scaffolding_remove_img_dimensions', 10 );
+add_filter( 'post_thumbnail_html', 'girders_remove_img_dimensions', 10 );
+add_filter( 'get_avatar','girders_remove_img_dimensions', 10 );
 /* Currently commented out so clients can still edit image sizes in the editor
-add_filter( 'the_content', 'scaffolding_remove_img_dimensions', 10 ); */
+add_filter( 'the_content', 'girders_remove_img_dimensions', 10 ); */
 
 /**
  * Remove the p from around imgs
  *
- * This function is called in scaffolding_build().
+ * This function is called in girders_build().
  *
  * @link http://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_filter_ptags_on_images( $content ){
+function girders_filter_ptags_on_images( $content ){
 	return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content );
 }
 
 /**
  * Filter out hard-coded width, height attributes on all captions (wp-caption class)
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_fix_img_caption_shortcode( $attr, $content = null ) {
+function girders_fix_img_caption_shortcode( $attr, $content = null ) {
 	if ( ! isset( $attr['caption'] ) ) {
 		if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
 			$content = $matches[1];
@@ -503,5 +503,5 @@ function scaffolding_fix_img_caption_shortcode( $attr, $content = null ) {
 	if ( $id ) $id = 'id="' . esc_attr( $id ) . '" ';
 	return '<figure ' . $id . 'class="wp-caption ' . esc_attr($align) . '" >' . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
-//add_shortcode( 'wp_caption', 'scaffolding_fix_img_caption_shortcode' );
-//add_shortcode( 'caption', 'scaffolding_fix_img_caption_shortcode' );
+//add_shortcode( 'wp_caption', 'girders_fix_img_caption_shortcode' );
+//add_shortcode( 'caption', 'girders_fix_img_caption_shortcode' );

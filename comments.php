@@ -6,8 +6,8 @@
  *
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  */
 
 // Do not delete these lines
@@ -22,7 +22,7 @@ if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' == basename( $_SER
  */
 if ( post_password_required() ) { ?>
 	<div class="alert help">
-		<p class="nocomments"><?php _e( 'This post is password protected. Enter the password to view comments.', 'scaffolding' ); ?></p>
+		<p class="nocomments"><?php _e( 'This post is password protected. Enter the password to view comments.', 'girders' ); ?></p>
 	</div>
 	<?php
 	return;
@@ -34,7 +34,7 @@ if ( have_comments() ) : ?>
 
 	<div id="comments" class="comments-area">
 
-		<h3 class="h2 comments-title"><?php comments_number( __( '<span>No</span> Responses', 'scaffolding' ), __( '<span>One</span> Response', 'scaffolding' ), _n( '<span>%</span> Response', '<span>%</span> Responses', get_comments_number(), 'scaffolding' ) ); ?> to &#8220;<?php the_title(); ?>&#8221;</h3>
+		<h3 class="h2 comments-title"><?php comments_number( __( '<span>No</span> Responses', 'girders' ), __( '<span>One</span> Response', 'girders' ), _n( '<span>%</span> Response', '<span>%</span> Responses', get_comments_number(), 'girders' ) ); ?> to &#8220;<?php the_title(); ?>&#8221;</h3>
 
 		<nav class="comment-nav">
 			<ul class="clearfix">
@@ -44,7 +44,7 @@ if ( have_comments() ) : ?>
 		</nav>
 
 		<ol class="commentlist">
-			<?php wp_list_comments( 'type=comment&callback=scaffolding_comments' ); ?>
+			<?php wp_list_comments( 'type=comment&callback=girders_comments' ); ?>
 		</ol>
 
 		<nav class="comment-nav">
@@ -62,7 +62,7 @@ else :
 
 	<?php if ( ! comments_open() ) : ?>
 
-		<p class="nocomments"><?php _e( 'Comments are closed.', 'scaffolding' ); ?></p>
+		<p class="nocomments"><?php _e( 'Comments are closed.', 'girders' ); ?></p>
 
 	<?php endif; ?>
 
@@ -79,7 +79,7 @@ if ( comments_open() ) : ?>
 		if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) : ?>
 
 			<div class="alert help">
-				<p><?php printf( __( 'You must be %1$slogged in%2$s to post a comment.', 'scaffolding' ), '<a href="<?php echo wp_login_url( get_permalink() ); ?>">', '</a>' ); ?></p>
+				<p><?php printf( __( 'You must be %1$slogged in%2$s to post a comment.', 'girders' ), '<a href="<?php echo wp_login_url( get_permalink() ); ?>">', '</a>' ); ?></p>
 			</div>
 
 		<?php else : ?>

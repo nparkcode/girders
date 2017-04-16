@@ -1,15 +1,15 @@
 <?php
 /**
- * Scaffolding Main Functions
+ * Girders Main Functions
  *
  * Add custom functions and edit thumbnail sizes, header images, sidebars, menus, etc.
  *
- * @link https://github.com/hallme/scaffolding
- * @link http://scaffolding.io
+ * @link https://github.com/hallme/girders
+ * @link http://girders.io
  * @link https://codex.wordpress.org/Theme_Development
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  *
  * @todo language support, customizer functions
  *
@@ -53,12 +53,12 @@ require_once( SCAFFOLDING_INCLUDE_PATH . 'tinymce-settings.php' );
 /**
  * Enqueue scripts and styles in wp_head() and wp_footer()
  *
- * This function is called in scaffolding_build() in base-functions.php.
+ * This function is called in girders_build() in base-functions.php.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  * @global wp_styles
  */
-function scaffolding_scripts_and_styles() {
+function girders_scripts_and_styles() {
 	// get global variables to add conditional wrappers around styles and scripts
 	global $wp_styles;
 	global $wp_scripts;
@@ -68,44 +68,44 @@ function scaffolding_scripts_and_styles() {
 	 */
 
 	// Main stylesheet
-	wp_enqueue_style( 'scaffolding-stylesheet', get_stylesheet_directory_uri() . '/css/style.css', array(), '', 'all' );
+	wp_enqueue_style( 'girders-stylesheet', get_stylesheet_directory_uri() . '/css/style.css', array(), '', 'all' );
 
 	// Font Awesome (icon set) - http://fortawesome.github.io/Font-Awesome/
-	wp_enqueue_style( 'scaffolding-font-awesome', get_stylesheet_directory_uri() . '/libs/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
+	wp_enqueue_style( 'girders-font-awesome', get_stylesheet_directory_uri() . '/libs/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
 
 	// IE-only stylesheet
-	wp_enqueue_style( 'scaffolding-ie-only', get_stylesheet_directory_uri() . '/css/ie.css', array(), '' );
-	$wp_styles->add_data( 'scaffolding-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+	wp_enqueue_style( 'girders-ie-only', get_stylesheet_directory_uri() . '/css/ie.css', array(), '' );
+	$wp_styles->add_data( 'girders-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
 	// Modernizr - http://modernizr.com/
-	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), false );
+	wp_enqueue_script( 'girders-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), false );
 
 	// Respond - https://github.com/scottjehl/Respond
-	wp_enqueue_script( 'scaffolding-respondjs', get_stylesheet_directory_uri() . '/libs/js/respond.min.js', array(), false );
-	$wp_scripts->add_data( 'scaffolding-respondjs', 'conditional', 'lt IE 9' ); // add conditional wrapper around respond script
+	wp_enqueue_script( 'girders-respondjs', get_stylesheet_directory_uri() . '/libs/js/respond.min.js', array(), false );
+	$wp_scripts->add_data( 'girders-respondjs', 'conditional', 'lt IE 9' ); // add conditional wrapper around respond script
 
 	/**
 	 * Add to wp_footer()
 	 */
 
 	// Retina.js - http://imulus.github.io/retinajs/
-	wp_enqueue_script( 'scaffolding-retinajs', get_stylesheet_directory_uri() . '/libs/js/retina.min.js', array(), '1.4.2', true );
+	wp_enqueue_script( 'girders-retinajs', get_stylesheet_directory_uri() . '/libs/js/retina.min.js', array(), '1.4.2', true );
 
 	// Magnific Popup (lightbox) - http://dimsemenov.com/plugins/magnific-popup/
-	wp_enqueue_script( 'scaffolding-magnific-popup-js', get_stylesheet_directory_uri() . '/libs/js/jquery.magnific-popup.min.js', array( 'jquery' ), '1.0.0', true );
+	wp_enqueue_script( 'girders-magnific-popup-js', get_stylesheet_directory_uri() . '/libs/js/jquery.magnific-popup.min.js', array( 'jquery' ), '1.0.0', true );
 
 	// Select2 - https://select2.github.io/
-	wp_enqueue_script( 'scaffolding-select2', get_stylesheet_directory_uri() . '/libs/js/select2.min.js', array( 'jquery' ), '3.5.4', true );
+	wp_enqueue_script( 'girders-select2', get_stylesheet_directory_uri() . '/libs/js/select2.min.js', array( 'jquery' ), '3.5.4', true );
 
 	// Comment reply script for threaded comments
 	if ( is_singular() && comments_open() && ( 1 == get_option('thread_comments' ) ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	// Add Scaffolding scripts file in the footer
-	wp_enqueue_script( 'scaffolding-js', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
+	// Add Girders scripts file in the footer
+	wp_enqueue_script( 'girders-js', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
 
-} // end scaffolding_scripts_and_styles()
+} // end girders_scripts_and_styles()
 
 
 /************************************
@@ -115,15 +115,15 @@ function scaffolding_scripts_and_styles() {
 /**
 * Add WP3+ functions and theme support
 *
-* Function called in scaffolding_build() in base-functions.php.
+* Function called in girders_build() in base-functions.php.
 *
-* @see scaffolding_custom_headers_callback
-* @since Scaffolding 1.0
+* @see girders_custom_headers_callback
+* @since Girders 1.0
 */
-function scaffolding_theme_support() {
+function girders_theme_support() {
 
 	// Make theme available for translation
-	load_theme_textdomain( 'scaffolding', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'girders', get_template_directory() . '/languages' );
 
 	// Support for thumbnails
 	add_theme_support( 'post-thumbnails' );
@@ -145,7 +145,7 @@ function scaffolding_theme_support() {
 		'default-text-color'      => 'ffffff',
 		'header-text'             => false,
 		'uploads'                 => true,
-		'wp-head-callback'        => 'scaffolding_custom_headers_callback', // callback function
+		'wp-head-callback'        => 'girders_custom_headers_callback', // callback function
 		'admin-head-callback'     => '',
 		'admin-preview-callback'  => '',
 		)
@@ -195,15 +195,15 @@ function scaffolding_theme_support() {
 	// Register WP3+ menus
 	register_nav_menus(
 		array(
-			'main-nav'   => __( 'Main Menu', 'scaffolding' ),    // main nav in header
-			'footer-nav' => __( 'Footer Menu', 'scaffolding' ),   // secondary nav in footer
+			'main-nav'   => __( 'Main Menu', 'girders' ),    // main nav in header
+			'footer-nav' => __( 'Footer Menu', 'girders' ),   // secondary nav in footer
 		)
 	);
 
 	// Add styles for use in visual editor
 	add_editor_style( 'css/editor-styles.css' );
 
-} // end scaffolding_theme_support()
+} // end girders_theme_support()
 
 
 /************************************
@@ -213,14 +213,14 @@ function scaffolding_theme_support() {
 /**
 * Two menus included - main menu in header and footer menu
 *
-* Add any additional menus here. Register new menu in scaffolding_theme_support() above.
+* Add any additional menus here. Register new menu in girders_theme_support() above.
 *
-* @see scaffolding_walker_nav_menu
-* @since Scaffolding 1.0
+* @see girders_walker_nav_menu
+* @since Girders 1.0
 */
 
 // Main navigation menu
-function scaffolding_main_nav() {
+function girders_main_nav() {
 	// Display the wp3 menu if available
 	wp_nav_menu(array(
 		'container'       => '',						 	  // remove nav container
@@ -235,12 +235,12 @@ function scaffolding_main_nav() {
 		'depth'           => 0,							      // limit the depth of the nav
 		'fallback_cb'     => '',	                          // fallback function
 		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-		'walker'          => new Scaffolding_Walker_Nav_Menu,
+		'walker'          => new Girders_Walker_Nav_Menu,
 	));
-} // end scaffolding_main_nav()
+} // end girders_main_nav()
 
 // Footer menu (should you choose to use one)
-function scaffolding_footer_nav() {
+function girders_footer_nav() {
 	wp_nav_menu(array(
 		'container'       => '',
 		'container_class' => '',
@@ -254,16 +254,16 @@ function scaffolding_footer_nav() {
 		'depth'           => 0,
 		'fallback_cb'     => '__return_false',
 	));
-} // end scaffolding_footer_nav()
+} // end girders_footer_nav()
 
 /**
  * Custom walker to build main navigation menu
  *
  * Adds classes for enhanced styles and support for mobile off-canvas menu.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-class Scaffolding_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Girders_Walker_Nav_Menu extends Walker_Nav_Menu {
 	// add classes to ul sub-menus
 	function start_lvl( &$output, $depth = 0, $args = Array() ) {
 		// depth dependent classes
@@ -336,7 +336,7 @@ class Scaffolding_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 		return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}
-} // end Scaffolding_Walker_Nav_Menu()
+} // end Girders_Walker_Nav_Menu()
 
 
 /************************************
@@ -346,23 +346,23 @@ class Scaffolding_Walker_Nav_Menu extends Walker_Nav_Menu {
 /**
  * Add additional image sizes
  *
- * Function called in scaffolding_build() in base-functions.php.
- * Ex. add_image_size( 'scaffolding-thumb-600', 600, 150, true );
+ * Function called in girders_build() in base-functions.php.
+ * Ex. add_image_size( 'girders-thumb-600', 600, 150, true );
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_add_image_sizes() {}
+function girders_add_image_sizes() {}
 
 /**
  * Register custom image headers
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
 register_default_headers( array(
 	'default' => array(
 		'url'             => get_template_directory_uri() . '/images/headers/default.jpg',
 		'thumbnail_url'   => get_template_directory_uri() . '/images/headers/default.jpg',
-		'description'     => __( 'default', 'scaffolding' ),
+		'description'     => __( 'default', 'girders' ),
 	)
 ));
 
@@ -370,11 +370,11 @@ register_default_headers( array(
  * Set header image as a BG
  *
  * Includes IE8 polyfill to allow image to span full width of screen.
- * This is a callback function defined in scaffolding_theme_support() 'custom-header'.
+ * This is a callback function defined in girders_theme_support() 'custom-header'.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_custom_headers_callback() { ?>
+function girders_custom_headers_callback() { ?>
 	<style type="text/css">
 		#banner {
 			background-image: url( <?php header_image(); ?> );
@@ -382,7 +382,7 @@ function scaffolding_custom_headers_callback() { ?>
 		}
 	</style>
 	<?php
-} // end scaffolding_custom_headers_callback()
+} // end girders_custom_headers_callback()
 
 
 /************************************
@@ -395,13 +395,13 @@ function scaffolding_custom_headers_callback() { ?>
  * Two sidebars registered - left and right.
  * Define additional sidebars here.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_register_sidebars() {
+function girders_register_sidebars() {
 	register_sidebar(array(
 		'id'              => 'left-sidebar',
-		'name'            => __('Left Sidebar', 'scaffolding'),
-		'description'     => __('The Left (primary) sidebar used for the interior menu.', 'scaffolding'),
+		'name'            => __('Left Sidebar', 'girders'),
+		'description'     => __('The Left (primary) sidebar used for the interior menu.', 'girders'),
 		'before_widget'   => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'    => '</div>',
 		'before_title'    => '<h4 class="widgettitle">',
@@ -409,14 +409,14 @@ function scaffolding_register_sidebars() {
 	));
 	register_sidebar(array(
 		'id'              => 'right-sidebar',
-		'name'            => __('Right Sidebar', 'scaffolding'),
-		'description'     => __('The Right sidebar used for the interior call to actions.', 'scaffolding'),
+		'name'            => __('Right Sidebar', 'girders'),
+		'description'     => __('The Right sidebar used for the interior call to actions.', 'girders'),
 		'before_widget'   => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'    => '</div>',
 		'before_title'    => '<h4 class="widgettitle">',
 		'after_title'     => '</h4>',
 	));
-} // end scaffolding_register_sidebars()
+} // end girders_register_sidebars()
 
 
 /************************************
@@ -428,9 +428,9 @@ function scaffolding_register_sidebars() {
  *
  * This function is dependent on Yoast SEO Plugin.
  *
- * @since Scaffolding 1.1
+ * @since Girders 1.1
  */
-function scaffolding_noindex_filter( $query ) {
+function girders_noindex_filter( $query ) {
 	if ( ! is_admin() && $query->is_search() && defined( 'WPSEO_VERSION' ) ) {
 		$query->set( 'meta_key', '_yoast_wpseo_meta-robots-noindex' );
 		$query->set( 'meta_value', '' );
@@ -438,7 +438,7 @@ function scaffolding_noindex_filter( $query ) {
 	}
 	return $query;
 }
-add_action( 'pre_get_posts', 'scaffolding_noindex_filter' );
+add_action( 'pre_get_posts', 'girders_noindex_filter' );
 
 
 /************************************
@@ -448,9 +448,9 @@ add_action( 'pre_get_posts', 'scaffolding_noindex_filter' );
 /**
  * Comment Layout
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_comments( $comment, $args, $depth ) {
+function girders_comments( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment; ?>
 	<li <?php comment_class(); ?>>
 		<article id="comment-<?php comment_ID(); ?>" class="clearfix">
@@ -466,13 +466,13 @@ function scaffolding_comments( $comment, $args, $depth ) {
 				$bgauthemail = get_comment_author_email();
 				?>
 				<img data-gravatar="http://www.gravatar.com/avatar/<?php echo md5( $bgauthemail ); ?>?s=32" class="load-gravatar avatar avatar-48 photo" height="32" width="32" src="<?php echo get_template_directory_uri(); ?>/images/nothing.gif" />
-				<?php printf( __( '<cite class="fn">%s</cite>', 'scaffolding' ), get_comment_author_link() ) ?>
-				<time datetime="<?php echo comment_time( 'Y-m-d' ); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time( __( 'F jS, Y', 'scaffolding' ) ); ?> </a></time>
-				<?php edit_comment_link( __( '(Edit)', 'scaffolding'),'  ','' ) ?>
+				<?php printf( __( '<cite class="fn">%s</cite>', 'girders' ), get_comment_author_link() ) ?>
+				<time datetime="<?php echo comment_time( 'Y-m-d' ); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time( __( 'F jS, Y', 'girders' ) ); ?> </a></time>
+				<?php edit_comment_link( __( '(Edit)', 'girders'),'  ','' ) ?>
 			</header>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
 				<div class="alert info">
-					<p><?php _e( 'Your comment is awaiting moderation.', 'scaffolding' ); ?></p>
+					<p><?php _e( 'Your comment is awaiting moderation.', 'girders' ); ?></p>
 				</div>
 			<?php endif; ?>
 			<section class="comment_content clearfix">
@@ -482,7 +482,7 @@ function scaffolding_comments( $comment, $args, $depth ) {
 		</article>
 	<?php /* </li> is added by WordPress automatically */ ?>
 <?php
-} // end scaffolding_comments()
+} // end girders_comments()
 
 
 /************************************
@@ -494,23 +494,23 @@ function scaffolding_comments( $comment, $args, $depth ) {
 /**
  * Removes the annoying […] to a Read More link
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  * @global post
  */
-function scaffolding_excerpt_more( $more ) {
+function girders_excerpt_more( $more ) {
 	global $post;
-	return '&hellip; <a class="read-more" href="'. get_permalink( $post->ID ) . '" title="'. __('Read ', 'scaffolding') . get_the_title( $post->ID ).'">'. __('Read more &raquo;', 'scaffolding') .'</a>';
-} // end scaffolding_excerpt_more()
+	return '&hellip; <a class="read-more" href="'. get_permalink( $post->ID ) . '" title="'. __('Read ', 'girders') . get_the_title( $post->ID ).'">'. __('Read more &raquo;', 'girders') .'</a>';
+} // end girders_excerpt_more()
 
 /**
  * Modifies author post link which just returns the link
  *
  * This is necessary to allow usage of the usual l10n process with printf().
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  * @global authordata
  */
-function scaffolding_get_the_author_posts_link() {
+function girders_get_the_author_posts_link() {
 	global $authordata;
 	if ( ! is_object( $authordata ) ) {
 		return false;
@@ -518,7 +518,7 @@ function scaffolding_get_the_author_posts_link() {
 	$link = sprintf(
 		'<a href="%1$s" title="%2$s" rel="author">%3$s</a>',
 		get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
-		esc_attr( sprintf( __( 'Posts by %s', 'scaffolding' ), get_the_author() ) ), // No further l10n needed, core will take care of this one
+		esc_attr( sprintf( __( 'Posts by %s', 'girders' ), get_the_author() ) ), // No further l10n needed, core will take care of this one
 		get_the_author()
 	);
 	return $link;
@@ -541,21 +541,21 @@ if ( ! isset( $content_width ) ) {
 /**
  * Adjust content_width value for image attachment template
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_content_width() {
+function girders_content_width() {
 	if ( is_attachment() && wp_attachment_is_image() ) {
 		$GLOBALS['content_width'] = 810;
 	}
 }
-add_action( 'template_redirect', 'scaffolding_content_width' );
+add_action( 'template_redirect', 'girders_content_width' );
 
 /**
  * Disabe Default Dashboard Widgets
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  */
-function scaffolding_disable_default_dashboard_widgets() {
+function girders_disable_default_dashboard_widgets() {
 	global $wp_meta_boxes;
 	// wp..
 	//unset( $wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity'] );        // Activity
@@ -571,18 +571,18 @@ function scaffolding_disable_default_dashboard_widgets() {
 	//unset( $wp_meta_boxes['dashboard']['normal']['core']['yoast_db_widget''] );          // Yoast SEO
 	//unset( $wp_meta_boxes['dashboard']['normal']['core']['rg_forms_dashboard'] );        // Gravity Forms
 }
-add_action( 'wp_dashboard_setup', 'scaffolding_disable_default_dashboard_widgets', 999 );
+add_action( 'wp_dashboard_setup', 'girders_disable_default_dashboard_widgets', 999 );
 
 /**
  * Change name of "Posts" menu
  *
  * This is useful for improving UX in the WP backend.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  * @global menu, submenu
  */
 /*
-function scaffolding_change_post_menu_label() {
+function girders_change_post_menu_label() {
 	global $menu;
 	global $submenu;
 	$menu[5][0] = 'News';
@@ -592,7 +592,7 @@ function scaffolding_change_post_menu_label() {
 	$submenu['edit.php'][16][0] = 'Tags'; // Change name for tags
 	echo '';
 }
-add_action( 'admin_menu', 'scaffolding_change_post_menu_label' );
+add_action( 'admin_menu', 'girders_change_post_menu_label' );
 */
 
 /**
@@ -600,11 +600,11 @@ add_action( 'admin_menu', 'scaffolding_change_post_menu_label' );
  *
  * This is useful for improving UX in the WP backend.
  *
- * @since Scaffolding 1.0
+ * @since Girders 1.0
  * @global wp_post_types
  */
 /*
-function scaffolding_change_post_object_label() {
+function girders_change_post_object_label() {
 	global $wp_post_types;
 	$labels                        = &$wp_post_types['post']->labels;
 	$labels->name                  = 'News';
@@ -618,7 +618,7 @@ function scaffolding_change_post_object_label() {
 	$labels->not_found             = 'No News Entries found';
 	$labels->not_found_in_trash    = 'No News Entries found in Trash';
 }
-add_action( 'init', 'scaffolding_change_post_object_label' );
+add_action( 'init', 'girders_change_post_object_label' );
 */
 
 

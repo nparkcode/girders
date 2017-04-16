@@ -4,16 +4,14 @@
  *
  * Contains the closing of the "main" div and all content after.
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  */
 ?>
 
 					</div><?php // END #main ?>
 
 				<?php get_sidebar(); ?>
-
-				</div><?php // END .row ?>
 
 			</div><?php // END #inner-content ?>
 
@@ -23,9 +21,9 @@
 
 			<div id="inner-footer" class="wrap clearfix">
 
-				<nav role="navigation" aria-label="<?php _e( 'Footer Navigation', 'scaffolding' ); ?>">
+				<nav role="navigation" aria-label="<?php _e( 'Footer Navigation', 'girders' ); ?>">
 
-					<?php scaffolding_footer_nav(); ?>
+					<?php girders_footer_nav(); ?>
 
 				</nav>
 

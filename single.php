@@ -4,8 +4,8 @@
  *
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  */
 
 get_header(); ?>
@@ -18,7 +18,7 @@ get_header(); ?>
 
 					<h1 class="single-title" itemprop="headline"><?php the_title(); ?></h1>
 
-					<p class="entry-meta vcard"><?php printf(__('Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding'), get_the_time('Y-m-d'), get_the_time(get_option('date_format')), scaffolding_get_the_author_posts_link(), get_the_category_list(', ')); ?></p>
+					<p class="entry-meta vcard"><?php printf(__('Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'girders'), get_the_time('Y-m-d'), get_the_time(get_option('date_format')), girders_get_the_author_posts_link(), get_the_category_list(', ')); ?></p>
 
 				</header>
 
@@ -27,7 +27,7 @@ get_header(); ?>
 					<?php the_content(); ?>
 
 					<?php wp_link_pages( array(
-						'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'scaffolding' ) . '</span>',
+						'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'girders' ) . '</span>',
 						'after'       => '</div>',
 						'link_before' => '<span>',
 						'link_after'  => '</span>',

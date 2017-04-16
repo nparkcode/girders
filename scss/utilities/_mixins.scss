@@ -245,7 +245,7 @@ span.amp {
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
-.scaffolding-hidden {
+.girders-hidden {
 	display: none !important;
 	visibility: hidden;
 }
@@ -253,7 +253,7 @@ span.amp {
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-.scaffolding-visuallyhidden {
+.girders-visuallyhidden {
 	border: 0;
 	clip: rect(0 0 0 0);
 	height: 1px;
@@ -268,8 +268,8 @@ span.amp {
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
-.scaffolding-visuallyhidden.focusable:active,
-.scaffolding-visuallyhidden.focusable:focus {
+.girders-visuallyhidden.focusable:active,
+.girders-visuallyhidden.focusable:focus {
 	clip: auto;
 	height: auto;
 	margin: 0;
@@ -279,7 +279,7 @@ span.amp {
 }
 
 /* Hide visually and from screenreaders, but maintain layout */
-.scaffolding-invisible {
+.girders-invisible {
 	visibility: hidden;
 }
 

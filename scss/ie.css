@@ -1,0 +1,48 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: IE Stylesheet
+
+These styles and fixes are ONLY seen by IE, so you don't have to
+worry about using prefixes, although it's best practice. For more
+info on using Modernizr classes, check out this link:
+http://www.modernizr.com/docs/
+
+******************************************************************/
+/*
+For example, you can use something like:
+
+.no-textshadow .class { ... }
+
+You can also target specific versions by using the classes applied to
+the html element. These can sometimes change, so take a look inside the
+header.php file to see what they are:
+
+.lt-ie8 .class { ... }
+*/
+/* line 32, /home/matt/Downloads/scaffolding-master/scss/ie.scss */
+.lt-ie8 #main-navigation ul.menu li {
+  float: left; }
+
+/* line 39, /home/matt/Downloads/scaffolding-master/scss/ie.scss */
+.lt-ie8 html,
+.lt-ie8 body.sticky-footer {
+  height: 100%;
+  margin: 0; }
+
+/* line 46, /home/matt/Downloads/scaffolding-master/scss/ie.scss */
+.lt-ie8 body.sticky-footer #container {
+  display: block;
+  width: auto; }
+
+/* line 51, /home/matt/Downloads/scaffolding-master/scss/ie.scss */
+.lt-ie8 body.sticky-footer #container .header,
+.lt-ie8 body.sticky-footer #container .banner-wrap,
+.lt-ie8 body.sticky-footer #content,
+.lt-ie8 body.sticky-footer #container .footer {
+  display: block;
+  height: auto;
+  overflow: hidden; }
+
+/*# sourceMappingURL=ie.css.map */

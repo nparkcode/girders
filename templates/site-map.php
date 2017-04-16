@@ -2,8 +2,8 @@
 /**
  * Template Name: Site Map Page
  *
- * @package Scaffolding
- * @since Scaffolding 1.1
+ * @package Girders
+ * @since Girders 1.1
  */
 
 get_header();
@@ -70,7 +70,7 @@ $read_settings_num_posts = get_option('posts_per_page');
 /**
  * Build display for taxonomy terms
  */
-function scaffolding_list_terms( $param, $tax ) {
+function girders_list_terms( $param, $tax ) {
 
 	// Collect our excluded term ids
 	$excluded_term_IDs = $param['exclude'];
@@ -86,7 +86,7 @@ function scaffolding_list_terms( $param, $tax ) {
 			echo '">';
 			echo $term->name;
 			echo '</a>';
-			scaffolding_list_terms( array(
+			girders_list_terms( array(
 				'sort_column'	=> 'title',
 				'parent'	=> $term->term_id,
 				'hierarchical'	=> 0,
@@ -102,7 +102,7 @@ function scaffolding_list_terms( $param, $tax ) {
 /**
  * Build display for posts by post type
  */
-function scaffolding_list_posts( $param, $post_type ) {
+function girders_list_posts( $param, $post_type ) {
 
 	$pt = get_post_type_object( $post_type ); // Get post type object for name label
 	$count_posts = wp_count_posts( $post_type ); // Count number of posts in db
@@ -134,15 +134,15 @@ function scaffolding_list_posts( $param, $post_type ) {
 		}
 		if ( $published_posts > $read_settings_num_posts ) {
 			echo '<li><a href="' . $archive_link . '" title="';
-				echo sprintf( __( 'View all %s', 'scaffolding' ), $pt->labels->name );
+				echo sprintf( __( 'View all %s', 'girders' ), $pt->labels->name );
 				echo '">';
-				echo sprintf( __( 'View all %s', 'scaffolding' ), $pt->labels->name );
+				echo sprintf( __( 'View all %s', 'girders' ), $pt->labels->name );
 				echo '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
 	} else {
-		echo sprintf( __( 'There are currently no %s.', 'scaffolding' ), $pt->labels->name );
+		echo sprintf( __( 'There are currently no %s.', 'girders' ), $pt->labels->name );
 	}
 
 }
@@ -164,56 +164,52 @@ function scaffolding_list_posts( $param, $post_type ) {
 
 					<?php wp_link_pages(
 						array(
-							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'scaffolding' ) . '</span>',
+							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'girders' ) . '</span>',
 							'after'       => '</div>',
 							'link_before' => '<span>',
 							'link_after'  => '</span>',
 						)
 					); ?>
 
-					<div class="row">
+					<div id="pages">
 
-						<div id="pages" class="col-sm-6">
+						<h3><?php _e( 'Pages', 'girders' ); ?></h3>
+						<ul>
+							<?php // List Pages
+							wp_list_pages( array(
+								'sort_column'	=> 'post_title',
+								'title_li'	=> '',
+								'exclude'	=> $excluded_IDs
+							) ); ?>
+						</ul>
 
-							<h3><?php _e( 'Pages', 'scaffolding' ); ?></h3>
-							<ul>
-								<?php // List Pages
-								wp_list_pages( array(
-									'sort_column'	=> 'post_title',
-									'title_li'	=> '',
-									'exclude'	=> $excluded_IDs
-								) ); ?>
-							</ul>
+					</div><?php // END #pages ?>
 
-						</div><?php // END #pages ?>
+					<div id="posts">
 
-						<div id="posts" class="col-sm-6">
+						<h3><?php _e( 'Blog Posts', 'girders' ); ?></h3>
+						<?php
+						// List Posts
+						$params = array(
+							'numberposts'	=> $read_settings_num_posts,
+							'sort_column'	=> 'title',
+							'exclude' 	=> $excluded_IDs,
+							'post_type'	=> 'post'
+						);
+						girders_list_posts( $params, 'post' );
+						?>
 
-							<h3><?php _e( 'Blog Posts', 'scaffolding' ); ?></h3>
-							<?php
-							// List Posts
-							$params = array(
-								'numberposts'	=> $read_settings_num_posts,
-								'sort_column'	=> 'title',
-								'exclude' 	=> $excluded_IDs,
-								'post_type'	=> 'post'
-							);
-							scaffolding_list_posts( $params, 'post' );
-							?>
+						<?php
+						/* Example: List Product Categories
+						$params = array(
+							'sort_column'	=> 'title',
+							'exclude'	=> $excluded_term_IDs,
+							'parent' 	=> 0
+						);
+						girders_list_terms( $params, 'product_cat' );
+						*/ ?>
 
-							<?php
-							/* Example: List Product Categories
-							$params = array(
-								'sort_column'	=> 'title',
-								'exclude'	=> $excluded_term_IDs,
-								'parent' 	=> 0
-							);
-							scaffolding_list_terms( $params, 'product_cat' );
-							*/ ?>
-
-						</div><?php // END #posts ?>
-
-					</div><?php // END .row ?>
+					</div><?php // END #posts ?>
 
 				</section>
 

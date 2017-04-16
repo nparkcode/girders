@@ -2,23 +2,23 @@
 /**
  * Pagination
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  */
 
-if ( function_exists( 'scaffolding_page_navi' ) ) : ?>
+if ( function_exists( 'girders_page_navi' ) ) : ?>
 
-	<?php global $wp_query; scaffolding_page_navi( '', '', $wp_query ); ?>
+	<?php global $wp_query; girders_page_navi( '', '', $wp_query ); ?>
 
 <?php else : ?>
 
 	<nav class="wp-prev-next">
 		<ul class="clearfix">
 			<li class="prev-link">
-				<?php next_posts_link( __( '&laquo; Older Entries', 'scaffolding' ) ); ?>
+				<?php next_posts_link( __( '&laquo; Older Entries', 'girders' ) ); ?>
 			</li>
 			<li class="next-link">
-				<?php previous_posts_link( __( 'Newer Entries &raquo;', 'scaffolding' ) ); ?>
+				<?php previous_posts_link( __( 'Newer Entries &raquo;', 'girders' ) ); ?>
 			</li>
 		</ul>
 	</nav>

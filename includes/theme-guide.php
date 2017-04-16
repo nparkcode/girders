@@ -5,17 +5,17 @@
  * This may be useful for clients as a user guide.
  * Edit however it may suit your needs.
  *
- * @since Scaffolding 1.1
+ * @since Girders 1.1
  */
 
 /**
- * Scaffolding theme page html
+ * Girders theme page html
  *
- * @since Scaffolding 1.1
+ * @since Girders 1.1
  */
-function scaffolding_theme_page() { ?>
+function girders_theme_page() { ?>
 	<div class="wrap">
-		<h2>Scaffolding Theme Guide</h2>
+		<h2>Girders Theme Guide</h2>
 		<ul>
 			<li>Here you can add theme specific instructions for clients;</li>
 			<li>Show content to specific users by capability or role;</li>
@@ -64,15 +64,15 @@ function scaffolding_theme_page() { ?>
 		</ol>
 	</div>
 	<?php
-} // end scaffolding_theme_page()
+} // end girders_theme_page()
 
 /**
- * Add scaffolding theme page in appearances dropdown menu
+ * Add girders theme page in appearances dropdown menu
  *
- * @see scaffolding_theme_page
- * @since Scaffolding 1.1
+ * @see girders_theme_page
+ * @since Girders 1.1
  */
-function scaffolding_theme_menu() {
-	add_theme_page( 'Scaffolding Theme', 'Scaffolding Guide', 'edit_theme_options', 'scaffolding_theme_guide', 'scaffolding_theme_page' );
+function girders_theme_menu() {
+	add_theme_page( 'Girders Theme', 'Girders Guide', 'edit_theme_options', 'girders_theme_guide', 'girders_theme_page' );
 }
-add_action( 'admin_menu', 'scaffolding_theme_menu' );
+add_action( 'admin_menu', 'girders_theme_menu' );

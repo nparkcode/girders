@@ -4,8 +4,8 @@
  *
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Scaffolding
- * @since Scaffolding 1.0
+ * @package Girders
+ * @since Girders 1.0
  */
 
 get_header(); ?>
@@ -25,7 +25,7 @@ get_header(); ?>
 					<?php the_content(); ?>
 
 					<?php wp_link_pages( array(
-							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'scaffolding' ) . '</span>',
+							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'girders' ) . '</span>',
 							'after'       => '</div>',
 							'link_before' => '<span>',
 							'link_after'  => '</span>',
